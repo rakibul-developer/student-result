@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% block title %}Search Result{% endblock title %}
+
+{% block content %}
+<div class="feature">
+    <div class="container">
+        <div class="feature-content">
+            <div class="card">
+                <h1 class="text-center">Search Result</h1>
+
+                {% comment %} Search Student {% endcomment %}
+                <form method="get" action="{% url 'search_result' %}">
+                    <input class="w-50 m-auto" type="text" name="q" placeholder="Enter Roll Number">
+                    <button class="btn btn-primary m-auto" type="submit">Search</button>
+                </form>
+
+                {% comment %} Stuent Result {% endcomment %}
+                {% if student %}
+                <h2>Results for {{ student.name }}</h2>
+
+                <div class="card">
+                    <ul>
+                        {% for result in results %}
+                        <li>{{ result.subject.name }}: {{ result.marks }} ( {{result.exam.name}} )</li>
+                        {% endfor %}
+                    </ul>
+
+                    {% elif query %}
+
+                    <p class="text-center">No student found with roll number {{ query }}</p>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

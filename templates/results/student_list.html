@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% block title %}Student List{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="center">
+        <div class="card w-100">
+            <div class="form-buttons justify-content-between">
+                <h1>Students</h1>
+                <a class="btn btn-primary" href="{% url 'student_create' %}">Add Student</a>
+            </div>
+        </div>
+        <ul class="tasks my-1">
+    
+            {% comment %} All student List {% endcomment %}
+            {% for student in students %}
+            <li>
+                {{ student.id }}. {{ student.name }} - {{student.roll}}
+                <div class="task-controls">
+                    <a class="btn btn-primary" href="{% url 'student_update' student.pk %}">Edit</a>
+                    <a class="btn btn-outline" href="{% url 'student_delete' student.pk %}">Delete</a>
+                </div>
+    
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}

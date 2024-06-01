@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block title %}Confirm Delete{% endblock title %}
+
+{% block content %}
+
+    <div class="center">
+        <form method="post" class="card">
+            {% csrf_token %}
+            <h2>Delete Student</h2>
+            <p>Are you sure that you want to delete {{student.name}}?</p>
+
+            <div class="form-buttons">
+                <input type="submit" value="Delete" class="btn btn-primary">
+                <a href="{% url "student_list" %}" class="btn btn-outline">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
